@@ -26,13 +26,26 @@
 </button>
 <div class="container">
 	<!-- Begin Logo -->
-	<a class="navbar-brand" href="">
+	<a class="navbar-brand" href="{{ route('index') }}">
 		<img src="{{ asset('assets/img/logo.png') }}" alt="logo">
 	</a>
 	<!-- End Logo -->
 	<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 		<!-- Begin Menu -->
 		<ul class="navbar-nav ml-auto">
+			@auth
+				<li class="nav-item">
+					<a class="nav-link" href="{{ route('home') }}">Настройки</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+							 document.getElementById('logout-form').submit();">Выход</a>
+							 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+								 {{ csrf_field() }}
+							 </form>
+				</li>
+			@endauth
+
 			@guest
 				<li class="nav-item">
 					<a href="{{ route('login') }}" class="nav-link">Вход</a>
