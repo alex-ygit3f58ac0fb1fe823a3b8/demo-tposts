@@ -15,4 +15,6 @@ Route::get('/', 'IndexController@index')->name('index');
 
 Auth::routes();
 
+//Home
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/home', 'HomeController@save');
