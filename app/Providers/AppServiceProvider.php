@@ -4,25 +4,34 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class AppServiceProvider extends ServiceProvider
-{
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
-    }
+use App\Support\Captcha;
 
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        //
-    }
+class AppServiceProvider extends ServiceProvider
+{	
+	/**
+	 * All of the container bindings that should be registered.
+	 */
+	public $bindings = [
+		Captcha\CaptchaInterface::class => Captcha\CaptchaReCaptchaV2::class
+	];
+
+	/**
+	 * Register any application services.
+	 *
+	 * @return void
+	 */
+	public function register()
+	{
+		//
+	}
+
+	/**
+	 * Bootstrap any application services.
+	 *
+	 * @return void
+	 */
+	public function boot()
+	{
+		//
+	}
 }

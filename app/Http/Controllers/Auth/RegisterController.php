@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 use App\Notifications\RegisterUser as RegisterUserNotification;
+use App\Support\Captcha\CaptchaInterface;
 
 class RegisterController extends Controller
 {
@@ -50,8 +51,11 @@ class RegisterController extends Controller
 	 */
 	protected function validator(array $data)
 	{
+		$captcha = app(CaptchaInterface::class);
+		
 		return Validator::make($data, [
-			'email' => ['required', 'string', 'email', 'max:255', 'unique:users']			
+			'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+			$captcha->getHtmlAttributeName() => $captcha->getValidationRulesArray(),
 		]);
 	}
 

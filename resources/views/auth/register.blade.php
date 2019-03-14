@@ -4,6 +4,10 @@
 
 @section('content')
 
+@inject('captcha', 'App\Support\Captcha\CaptchaInterface')
+
+{{ $captcha->getScript() }}
+
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -23,6 +27,16 @@
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
+                            </div>
+                        </div>
+                        @if ($errors->has($captcha->getHtmlAttributeName()))
+                            <span class="help-block">
+                                <strong>{{ $errors->first($captcha->getHtmlAttributeName()) }}</strong>
+                            </span>
+                        @endif
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                {{ $captcha->getHtmlView() }}
                             </div>
                         </div>
                         <div class="form-group">
