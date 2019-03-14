@@ -35,6 +35,9 @@
 		<ul class="navbar-nav ml-auto">
 			@auth
 				<li class="nav-item">
+					<a class="nav-link" href="{{ route('post.create_form') }}">Новый пост</a>{{-- <span class="sr-only">(current)</span> --}}
+				</li>
+				<li class="nav-item">
 					<a class="nav-link" href="{{ route('home') }}">Настройки</a>
 				</li>
 				<li class="nav-item">

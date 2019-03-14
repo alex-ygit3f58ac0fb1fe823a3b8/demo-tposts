@@ -15,6 +15,12 @@ Route::get('/', 'IndexController@index')->name('index');
 
 Auth::routes();
 
+//Posts
+Route::middleware('auth')->group(function(){
+	Route::get( '/post/new', 'PostController@createForm' )->name( 'post.create_form' );
+	Route::post( '/post/new', 'PostController@store' )->name( 'post.store' );
+});
+
 //Home
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/home', 'HomeController@save');
