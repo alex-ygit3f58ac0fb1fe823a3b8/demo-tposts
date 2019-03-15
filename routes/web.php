@@ -21,6 +21,8 @@ Route::middleware('auth')->group(function(){
 	Route::post( '/post/new', 'PostController@store' )->name( 'post.store' );
 });
 
+Route::get( '/post/{post}', 'PostController@show' )->name('post.show');
+
 //Home
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/home', 'HomeController@save');

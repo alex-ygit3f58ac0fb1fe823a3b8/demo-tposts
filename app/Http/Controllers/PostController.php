@@ -39,4 +39,15 @@ class PostController extends Controller
 		
 		return redirect()->route('home');
 	}
+	
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  \App\Post  $post
+	 * @return \Illuminate\Http\Response
+	 */
+	public function show(Post $post)
+	{
+		return view('post.show', ['post' => $post]);
+	}
 }
