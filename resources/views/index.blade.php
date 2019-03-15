@@ -9,11 +9,14 @@
 	<div class="graybg authorpage">
 		<div class="container">
 			<div class="listrecent listrelated">
-
+	            @foreach ($posts as $post)
+					@include('post.preview')
+				@endforeach
 			</div>
 		</div>
 	</div>
 	<!-- End Author Posts
 ================================================== -->
 <br>
+{{ $posts->links() }}
 @endsection

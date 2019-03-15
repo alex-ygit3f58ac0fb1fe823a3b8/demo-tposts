@@ -44,4 +44,16 @@ class User extends Authenticatable
 	{
 		return $this->hasMany(Post::class);
 	}
+	
+	/**
+	 * Get full user name Accessor
+	 */
+	public function getFullNameAttribute()
+	{
+		if ( !empty( $this->name ) ) {
+			return $this->name;
+		}
+		
+		return 'User #' . $this->id;
+	}
 }
