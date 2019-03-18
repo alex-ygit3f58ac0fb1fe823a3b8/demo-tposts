@@ -22,7 +22,7 @@
             <div class="col-md-10">
                 <br>
                 <br>
-                <a class="link-dark" href="#">{{ $post->user->full_name }}</a>
+                <a class="link-dark" href="{{ route('user.posts', $post->user) }}">{{ $post->user->full_name }}</a>
                 <span class="post-date">{{ $post->created_at->format('d.m.Y') }}</span>
             </div>
             <!-- End Top Menta -->

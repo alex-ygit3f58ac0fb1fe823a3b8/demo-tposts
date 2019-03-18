@@ -20,8 +20,8 @@ Route::middleware('auth')->group(function(){
 	Route::get( '/post/new', 'PostController@createForm' )->name( 'post.create_form' );
 	Route::post( '/post/new', 'PostController@store' )->name( 'post.store' );
 });
-
 Route::get( '/post/{post}', 'PostController@show' )->name('post.show');
+Route::get( '/user/{user}/posts', 'PostController@showByUser' )->name('user.posts');
 
 //Home
 Route::get('/home', 'HomeController@index')->name('home');

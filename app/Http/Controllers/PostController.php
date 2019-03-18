@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Post;
+use App\User;
 
 class PostController extends Controller
 {
@@ -32,12 +33,9 @@ class PostController extends Controller
 			'content' => 'required'
 		]);
 		
-		$post = new Post;
-		$post->fill($request->all());
+		$post = Auth::user()->posts()->create($request->all());
 		
-		Auth::user()->posts()->save($post);
-		
-		return redirect()->route('home');
+		return redirect()->route('post.show', $post);
 	}
 	
 	/**
@@ -48,6 +46,19 @@ class PostController extends Controller
 	 */
 	public function show(Post $post)
 	{
-		return view('post.show', ['post' => $post]);
+		return view('post.show', compact('post') );
+	}
+	
+	/**
+	 * Display the specified resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function showByUser(User $user)
+	{
+		return view( 'user.posts', [
+			'posts' => $user->posts()->latest()->paginate(5),
+			'user' => $user
+		]);
 	}
 }

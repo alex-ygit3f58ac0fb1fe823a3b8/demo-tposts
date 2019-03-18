@@ -2,7 +2,7 @@
 <div class="authorpostbox">
     <div class="card">
         @php
-            $post_url = route('post.show', ['post' => $post->id]);
+            $post_url = route('post.show', $post);
         @endphp
         {{--
         <a href="{{ $post_url }}">
@@ -15,7 +15,7 @@
                <div class="metafooter">
                 <div class="wrapfooter">
                     <span class="author-meta">
-                        <span class="post-name"><a href="#">{{ $post->user->full_name }}</a></span><br/>
+                        <span class="post-name"><a href="{{ route('user.posts', $post->user) }}">{{ $post->user->full_name }}</a></span><br/>
                         <span class="post-date">{{ $post->created_at->format('d.m.Y') }}</span>
                     </span>
                 </div>
