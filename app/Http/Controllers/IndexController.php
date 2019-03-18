@@ -9,7 +9,7 @@ class IndexController extends Controller
 	public function index()
 	{
 		return view('index', [
-			'posts' => Post::with('user')->latest()->paginate(5)
+			'posts' => Post::with('user')->orderByDesc('id')->paginate(5)
 		]);
 	}
 }
